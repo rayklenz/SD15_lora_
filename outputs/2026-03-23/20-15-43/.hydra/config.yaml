@@ -1,0 +1,25 @@
+trainer:
+  device: cpu
+  batch_size: 1
+  num_epochs: 10
+  max_train_steps: 500
+  learning_rate: 5.0e-05
+  save_dir: saved/lora
+  log_freq: 10
+model:
+  _target_: src.model.sd15_lora.SD15LoRA
+  pretrained_model_name: runwayml/stable-diffusion-v1-5
+  rank: 16
+  alpha: 16
+datasets:
+  train:
+    dreambooth:
+      _target_: src.datasets.dreambooth.DreamBoothTrainDataset
+      data_path: data
+      placeholder_token: sks
+      class_name: bird
+      image_size: 512
+train_dataset_name: dreambooth
+inference_metrics:
+- textual_similarity
+- image_similarity

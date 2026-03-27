@@ -1,0 +1,6 @@
+[2026-03-25 12:09:36,522][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/runwayml/stable-diffusion-v1-5 "HTTP/1.1 307 Temporary Redirect"
+[2026-03-25 12:09:36,711][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/stable-diffusion-v1-5/stable-diffusion-v1-5 "HTTP/1.1 200 OK"
+[2026-03-25 12:09:36,896][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/runwayml/stable-diffusion-v1-5/resolve/main/model_index.json "HTTP/1.1 307 Temporary Redirect"
+[2026-03-25 12:09:37,090][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/resolve/main/model_index.json "HTTP/1.1 307 Temporary Redirect"
+[2026-03-25 12:09:37,091][huggingface_hub.utils._http][WARNING] - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[2026-03-25 12:09:37,155][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/stable-diffusion-v1-5/stable-diffusion-v1-5/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/model_index.json "HTTP/1.1 200 OK"

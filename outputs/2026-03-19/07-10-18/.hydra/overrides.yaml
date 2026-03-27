@@ -1,0 +1,2 @@
+- model.weight_dtype=torch.float32
+- trainer.device=cpu

@@ -1,0 +1,10 @@
+trainer:
+  device: cpu
+model:
+  _target_: src.model.sd15_lora.SD15LoRA
+  pretrained_model_name: runwayml/stable-diffusion-v1-5
+inferencer:
+  ckpt_dir: saved/lora
+  prompt: a photo of a sks bird, detailed feathers, realistic
+  num_inference_steps: 30
+  output_path: output.png

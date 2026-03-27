@@ -1,0 +1,31 @@
+defaults:
+  - _self_
+
+trainer:
+  device: "cpu"            # или "cuda"
+  batch_size: 1
+  num_epochs: 5
+  max_train_steps: 1500
+  learning_rate: 5e-5    # в коллабе для 2й модели использовалось все другие значения
+  save_dir: "saved0/lora_budgie"
+  log_freq: 10
+
+model:
+  _target_: src.model.sd15_lora.SD15LoRA
+  pretrained_model_name: "runwayml/stable-diffusion-v1-5"
+  rank: 16
+  alpha: 16
+
+datasets:
+  train:
+    dreambooth:
+      _target_: src.datasets.dreambooth.DreamBoothTrainDataset
+      data_path: "data"          # замените на путь к вашим фото
+      placeholder_token: "sks"
+      class_name: "budgierigar"
+      image_size: 512
+
+train_dataset_name: dreambooth
+
+# Метрики (будут вызываться после валидации)
+inference_metrics: ["textual_similarity", "image_similarity"]

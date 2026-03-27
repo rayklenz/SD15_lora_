@@ -1,0 +1,8 @@
+[2026-03-23 22:34:55,062][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/runwayml/stable-diffusion-v1-5 "HTTP/1.1 307 Temporary Redirect"
+[2026-03-23 22:34:55,234][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/stable-diffusion-v1-5/stable-diffusion-v1-5 "HTTP/1.1 200 OK"
+[2026-03-23 22:34:55,406][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/runwayml/stable-diffusion-v1-5/resolve/main/model_index.json "HTTP/1.1 307 Temporary Redirect"
+[2026-03-23 22:34:55,583][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/resolve/main/model_index.json "HTTP/1.1 307 Temporary Redirect"
+[2026-03-23 22:34:55,630][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/stable-diffusion-v1-5/stable-diffusion-v1-5/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/model_index.json "HTTP/1.1 200 OK"
+[2026-03-23 22:34:57,557][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/runwayml/stable-diffusion-v1-5/resolve/main/scheduler/scheduler_config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-03-23 22:34:57,724][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/resolve/main/scheduler/scheduler_config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-03-23 22:34:57,771][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/stable-diffusion-v1-5/stable-diffusion-v1-5/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/scheduler%2Fscheduler_config.json "HTTP/1.1 200 OK"

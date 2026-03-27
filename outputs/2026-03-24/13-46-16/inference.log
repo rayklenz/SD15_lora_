@@ -1,0 +1,5 @@
+[2026-03-24 13:46:16,596][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/runwayml/stable-diffusion-v1-5 "HTTP/1.1 307 Temporary Redirect"
+[2026-03-24 13:46:16,773][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/stable-diffusion-v1-5/stable-diffusion-v1-5 "HTTP/1.1 200 OK"
+[2026-03-24 13:46:16,941][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/runwayml/stable-diffusion-v1-5/resolve/main/model_index.json "HTTP/1.1 307 Temporary Redirect"
+[2026-03-24 13:46:17,114][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/stable-diffusion-v1-5/stable-diffusion-v1-5/resolve/main/model_index.json "HTTP/1.1 307 Temporary Redirect"
+[2026-03-24 13:46:17,163][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/stable-diffusion-v1-5/stable-diffusion-v1-5/451f4fe16113bff5a5d2269ed5ad43b0592e9a14/model_index.json "HTTP/1.1 200 OK"

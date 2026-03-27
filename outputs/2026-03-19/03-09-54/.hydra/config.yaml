@@ -1,0 +1,121 @@
+trainer:
+  _target_: src.trainer.lora_trainers.LoraTrainer
+  device: cpu
+  cfg_step: 10
+  log_step: 50
+  n_epochs: 10
+  epoch_len: 200
+  resume_from: null
+  from_pretrained: null
+  save_period: 1
+  save_dir: saved
+  seed: 0
+  max_grad_norm: null
+model:
+  _target_: src.model.sdxl.lora.DiffusionLora
+  pretrained_model_name_or_path: stabilityai/stable-diffusion-xl-base-1.0
+  weight_dtype: torch.float32
+  target_size: 1024
+  rank: 16
+  lora_modules:
+  - to_q
+  - to_k
+  - to_v
+  - to_out.0
+  init_lora_weights: gaussian
+writer:
+  _target_: src.logger.console.ConsoleWriter
+  id_length: 8
+  run_name: test
+  loss_names:
+  - loss
+transforms:
+  instance_transforms:
+    train:
+      pixel_values:
+        _target_: torchvision.transforms.v2.Compose
+        transforms:
+        - _target_: torchvision.transforms.Resize
+          size:
+          - 1024
+          - 1024
+          interpolation: 2
+        - _target_: torchvision.transforms.ToTensor
+        - _target_: torchvision.transforms.Normalize
+          mean:
+          - 0.5
+          std:
+          - 0.5
+    inference: null
+  batch_transforms:
+    train: null
+    inference: null
+lr_scheduler:
+  _target_: torch.optim.lr_scheduler.ConstantLR
+  factor: 1.0
+pipeline:
+  _target_: diffusers.StableDiffusionXLPipeline.from_pretrained
+  pretrained_model_name_or_path: stabilityai/stable-diffusion-xl-base-1.0
+  torch_dtype: ${model.weight_dtype}
+  use_safetensors: true
+  variant: fp16
+metrics:
+  id_sim_max:
+    _target_: src.metrics.id_sim_metric.IDSimMax
+  id_sim_best:
+    _target_: src.metrics.id_sim_metric.IDSimBest
+datasets:
+  train:
+    dreambooth:
+      _target_: src.datasets.dreambooth.DreamBoothTrainDataset
+      data_path: C:\Users\raven\genai_projects_2025-main\data
+      placeholder_token: sks
+      class_name: budgie
+      instance_transforms: ${transforms.instance_transforms.train}
+  val:
+    db_liv_small:
+      _target_: src.datasets.dreambooth.DreamBoothLivingSmall
+      data_path: C:\Users\raven\genai_projects_2025-main\data
+      placeholder_token: sks
+      class_name: budgie
+dataloaders:
+  train:
+    _target_: torch.utils.data.DataLoader
+    batch_size: 2
+    num_workers: 1
+    pin_memory: false
+  val_default:
+    _target_: torch.utils.data.DataLoader
+    batch_size: 1
+    num_workers: 1
+    pin_memory: false
+optimizer:
+  _convert_: partial
+  _target_: torch.optim.AdamW
+  weight_decay: 0
+loss_function:
+  _target_: src.loss.diffusion_loss.DiffusionLoss
+lr_for_unet: 0.0001
+train_dataset_name: dreambooth
+val_datasets_names:
+- db_liv_small
+inference_metrics:
+- id_sim_max
+- id_sim_best
+validation_args:
+  negative_prompt: lowres, text, error, cropped, worst quality, low quality, jpeg
+    artifacts, signature, watermark, blurry
+  num_images_per_prompt: 5
+  num_inference_steps: 50
+  guidance_scale: 5
+  height: 1024
+  width: 1024
+  target_size:
+  - 1024
+  - 1024
+  original_size:
+  - 1024
+  - 1024
+  crops_coords_top_left:
+  - 0
+  - 0
