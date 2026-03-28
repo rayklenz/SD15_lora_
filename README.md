@@ -162,5 +162,3 @@ python train.py \
 Библиотеки: `diffusers`, `peft`, `accelerate`, `transformers`, `hydra`, `omegaconf`.
 
 
->>>>>>> 48b4d692af59cb0d2e6f446c78fb358e414fdc01
-
